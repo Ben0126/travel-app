@@ -1,70 +1,135 @@
-# Getting Started with Create React App
+# 日本大阪與大邱旅遊行程規劃應用程式
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+這是一個功能豐富的一站式旅遊行程安排網站，專為您的日本大阪與大邱之旅而設計。
 
-## Available Scripts
+## 🌟 主要功能
 
-In the project directory, you can run:
+### 📅 行程概覽
+- **互動式日程表**: 點擊任意天數查看該日的詳細行程
+- **預設行程**: 包含完整的 6 天大阪大邱旅行計劃
+- **航班資訊**: TW664、TW313、VZ567 等航班詳情
+- **住宿安排**: Chuo Ward 住宿和關西機場酒店
+- **景點活動**: 大阪城、道頓堀、心齋橋等熱門景點
 
-### `npm start`
+### ✏️ 自定義行程管理
+- **新增行程**: 添加個人化的旅行項目
+- **編輯功能**: 修改現有的行程安排
+- **刪除功能**: 移除不需要的行程項目
+- **類型分類**: 支援活動、航班、住宿、交通、餐飲、購物等類型
+- **時間管理**: 支援日期和時間設定
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+### 📊 統計分析
+- **行程統計**: 顯示旅行天數、自定義項目數量等統計資訊
+- **類型分佈**: 視覺化顯示不同類型活動的分佈
+- **日程密度**: 分析每日行程的豐富程度
+- **智能建議**: 基於統計數據提供行程建議
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+### 💾 匯入/匯出功能
+- **JSON 匯出**: 完整備份行程資料
+- **CSV 匯出**: 便於在 Excel 或 Google Sheets 中查看
+- **JSON 匯入**: 恢復或分享行程資料
 
-### `npm test`
+## 🎨 設計特色
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- **繁體中文介面**: 完全本地化的使用體驗
+- **響應式設計**: 適配手機、平板、桌面等各種設備
+- **現代化 UI**: 使用 Tailwind CSS 打造美觀的用戶界面
+- **互動動畫**: 流暢的過渡效果和懸停動畫
+- **Emoji 圖示**: 直觀的視覺指示
 
-### `npm run build`
+## 🚀 快速開始
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+1. **安裝依賴**
+   ```bash
+   npm install
+   ```
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+2. **啟動開發伺服器**
+   ```bash
+   npm start
+   ```
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+3. **在瀏覽器中訪問**
+   ```
+   http://localhost:3000
+   ```
 
-### `npm run eject`
+## 📱 使用說明
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+### 查看預設行程
+1. 點擊「行程概覽」標籤
+2. 使用頂部的天數按鈕切換查看不同日期的行程
+3. 查看航班、住宿、活動的詳細資訊
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### 添加自定義行程
+1. 點擊「自定義行程」標籤
+2. 填寫行程表單（日期、時間、地點、描述、類型）
+3. 點擊「新增行程」按鈕
+4. 新項目會自動按時間順序排列
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+### 編輯和管理行程
+1. 在自定義行程列表中點擊「編輯」按鈕
+2. 修改相關資訊後點擊「儲存變更」
+3. 使用「刪除」按鈕移除不需要的項目
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+### 匯出和分享
+1. 在自定義行程頁面找到「行程匯入/匯出」區塊
+2. 選擇 JSON 格式（完整資料）或 CSV 格式（表格資料）
+3. 檔案會自動下載到您的電腦
 
-## Learn More
+## 🛠️ 技術棧
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+- **前端框架**: React 19.1.0
+- **樣式框架**: Tailwind CSS
+- **字體**: Noto Sans TC (Google Fonts)
+- **資料儲存**: localStorage (本機儲存)
+- **構建工具**: Create React App
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+## 📂 專案結構
 
-### Code Splitting
+```
+travel-app/
+├── public/
+│   ├── index.html
+│   └── ...
+├── src/
+│   ├── components/
+│   │   ├── ItineraryExport.js    # 匯入/匯出功能
+│   │   └── ItineraryStats.js     # 統計分析
+│   ├── App.js                    # 主應用程式
+│   ├── index.js                  # 入口檔案
+│   └── index.css                 # 樣式檔案
+├── package.json
+└── README.md
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+## 🎯 特色亮點
 
-### Analyzing the Bundle Size
+1. **零干擾原則**: 所有新功能都不會影響現有的預設行程
+2. **模組化設計**: 各功能組件獨立開發，可單獨維護
+3. **增量開發**: 功能逐步添加，每個版本都是穩定可用的
+4. **資料安全**: 使用本機儲存，保護用戶隱私
+5. **多格式支援**: 支援多種資料格式的匯入匯出
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+## 🔮 未來規劃
 
-### Making a Progressive Web App
+- [ ] 地圖整合顯示景點位置
+- [ ] 天氣資訊集成
+- [ ] 行程分享功能
+- [ ] 多語言支援
+- [ ] 離線使用支援
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+## 📝 更新日誌
 
-### Advanced Configuration
+### v1.0.0 (2024)
+- ✅ 基礎行程管理功能
+- ✅ 互動式日程表界面
+- ✅ 預設大阪大邱行程
+- ✅ 自定義行程添加/編輯
+- ✅ 統計分析功能
+- ✅ 匯入/匯出功能
+- ✅ 響應式設計
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+---
 
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+🎌 **祝您在大阪和大邱有一個愉快的旅程！**
