@@ -166,12 +166,6 @@ export const ItineraryProvider = ({ children }) => {
     );
   };
 
-  const deleteTodoItem = (id) => {
-    if (window.confirm('確定要刪除這個項目嗎？')) {
-      setTodoItems(prev => prev.filter(item => item.id !== id));
-    }
-  };
-
   // 行程編輯功能
   const updateEvent = (dayIndex, eventId, updatedEvent) => {
     setItineraryData(prev => 
@@ -227,7 +221,6 @@ export const ItineraryProvider = ({ children }) => {
     addTodoItem,
     updateTodoItem,
     toggleTodoItem,
-    deleteTodoItem,
     
     // 行程編輯方法
     updateEvent,

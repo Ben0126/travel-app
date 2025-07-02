@@ -47,17 +47,8 @@ const InfoPanel = () => {
             <p>• 確認護照有效期</p>
             <p>• 準備日圓現金</p>
             <p>• 下載Google翻譯App</p>
-          </div>
-        </div>
-
-        {/* 實用連結 */}
-        <div className="bg-purple-50 border border-purple-200 rounded-lg p-4">
-          <h4 className="font-semibold text-purple-800 mb-2">🔗 實用連結</h4>
-          <div className="text-sm text-purple-700 space-y-1">
-            <p>• 天氣預報</p>
-            <p>• 交通卡資訊</p>
-            <p>• 緊急聯絡方式</p>
-            <p>• 當地美食推薦</p>
+            <p>• 準備緊急聯絡方式</p>
+            <p>• 確認旅遊保險</p>
           </div>
         </div>
       </div>

@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useItinerary } from '../context/ItineraryContext';
 
 const TodoList = () => {
-  const { todoItems, addTodoItem, updateTodoItem, deleteTodoItem, toggleTodoItem } = useItinerary();
+  const { todoItems, addTodoItem, updateTodoItem, toggleTodoItem } = useItinerary();
   const [newItem, setNewItem] = useState('');
   const [editingId, setEditingId] = useState(null);
   const [editingText, setEditingText] = useState('');
@@ -38,7 +38,7 @@ const TodoList = () => {
   };
 
   // 分類統計
-  const completedCount = todoItems.filter(item => item.completed).length;
+  const preparedCount = todoItems.filter(item => item.completed).length;
   const totalCount = todoItems.length;
 
   return (
@@ -46,7 +46,7 @@ const TodoList = () => {
       <div className="flex items-center justify-between mb-6">
         <h3 className="text-xl font-semibold text-gray-800">📦 行李準備清單</h3>
         <div className="text-sm text-gray-500">
-          {completedCount}/{totalCount} 已完成
+          {preparedCount}/{totalCount} 已準備
         </div>
       </div>
 
@@ -54,12 +54,12 @@ const TodoList = () => {
       <div className="mb-6">
         <div className="flex justify-between text-sm text-gray-600 mb-2">
           <span>準備進度</span>
-          <span>{totalCount > 0 ? Math.round((completedCount / totalCount) * 100) : 0}%</span>
+          <span>{totalCount > 0 ? Math.round((preparedCount / totalCount) * 100) : 0}%</span>
         </div>
         <div className="w-full bg-gray-200 rounded-full h-2">
           <div 
             className="bg-gradient-to-r from-green-400 to-green-600 h-2 rounded-full transition-all duration-300 ease-in-out"
-            style={{ width: `${totalCount > 0 ? (completedCount / totalCount) * 100 : 0}%` }}
+            style={{ width: `${totalCount > 0 ? (preparedCount / totalCount) * 100 : 0}%` }}
           ></div>
         </div>
       </div>
@@ -101,17 +101,18 @@ const TodoList = () => {
                   : 'bg-gray-50 border-gray-200 hover:bg-gray-100'
               }`}
             >
-              {/* 核取方塊 */}
+              {/* 準備狀態核取方塊 */}
               <button
                 onClick={() => toggleTodoItem(item.id)}
-                className={`w-5 h-5 rounded border-2 flex items-center justify-center transition-colors duration-200 ${
+                className={`w-6 h-6 rounded border-2 flex items-center justify-center transition-colors duration-200 ${
                   item.completed
                     ? 'bg-green-600 border-green-600 text-white'
                     : 'border-gray-300 hover:border-green-400'
                 }`}
+                title={item.completed ? '已準備' : '點擊標記為已準備'}
               >
                 {item.completed && (
-                  <svg className="w-3 h-3" fill="currentColor" viewBox="0 0 20 20">
+                  <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
                     <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
                   </svg>
                 )}
@@ -146,24 +147,22 @@ const TodoList = () => {
                     {item.text}
                   </span>
                   
-                  {/* 操作按鈕 */}
-                  <div className="flex gap-1">
+                  {/* 狀態指示 */}
+                  <div className="flex items-center gap-2">
+                    {item.completed && (
+                      <span className="text-xs bg-green-100 text-green-800 px-2 py-1 rounded-full">
+                        已準備
+                      </span>
+                    )}
+                    
+                    {/* 編輯按鈕 */}
                     <button
                       onClick={() => startEditing(item)}
                       className="p-1 text-blue-600 hover:bg-blue-100 rounded transition-colors duration-200"
-                      title="編輯"
+                      title="編輯物品名稱"
                     >
                       <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
-                      </svg>
-                    </button>
-                    <button
-                      onClick={() => deleteTodoItem(item.id)}
-                      className="p-1 text-red-600 hover:bg-red-100 rounded transition-colors duration-200"
-                      title="刪除"
-                    >
-                      <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
                       </svg>
                     </button>
                   </div>
@@ -172,6 +171,18 @@ const TodoList = () => {
             </div>
           ))
         )}
+      </div>
+
+      {/* 使用說明 */}
+      <div className="mt-4 p-3 bg-blue-50 rounded-lg border border-blue-200">
+        <div className="flex items-center text-blue-800">
+          <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+          </svg>
+          <span className="text-xs">
+            點擊左側方塊標記物品已準備，點擊編輯圖示修改物品名稱
+          </span>
+        </div>
       </div>
 
       {/* 預設建議項目 */}
