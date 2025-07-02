@@ -47,6 +47,8 @@ body {
   min-height: 100vh;
 }
 
+/* 自定義主色調樣式補充 - 在 Tailwind v3 中應該已經通過配置自動生成 */
+
 /* 應用程式樣式 */
 .min-h-screen {
   min-height: 100vh;
