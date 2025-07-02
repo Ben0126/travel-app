@@ -240,6 +240,14 @@ export const ItineraryProvider = ({ children }) => {
     }
   };
 
+  // 重置行李清單為預設清單
+  const resetTodoToDefault = () => {
+    if (window.confirm('確定要重置行李清單為預設建議清單嗎？所有自訂項目將會遺失。')) {
+      setTodoItems(defaultTodoItems);
+      localStorage.setItem('travelTodoItems', JSON.stringify(defaultTodoItems));
+    }
+  };
+
   const value = {
     // 狀態
     selectedDay,
@@ -259,6 +267,7 @@ export const ItineraryProvider = ({ children }) => {
     addTodoItem,
     updateTodoItem,
     toggleTodoItem,
+    resetTodoToDefault,
     
     // 行程編輯方法
     updateEvent,

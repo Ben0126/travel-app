@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useItinerary } from '../context/ItineraryContext';
 
 const TodoList = () => {
-  const { todoItems, addTodoItem, updateTodoItem, toggleTodoItem } = useItinerary();
+  const { todoItems, addTodoItem, updateTodoItem, toggleTodoItem, resetTodoToDefault } = useItinerary();
   const [newItem, setNewItem] = useState('');
   const [editingId, setEditingId] = useState(null);
   const [editingText, setEditingText] = useState('');
@@ -45,8 +45,17 @@ const TodoList = () => {
     <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
       <div className="flex items-center justify-between mb-6">
         <h3 className="text-xl font-semibold text-gray-800">📦 行李準備清單</h3>
-        <div className="text-sm text-gray-500">
-          {preparedCount}/{totalCount} 已準備
+        <div className="flex items-center gap-3">
+          <div className="text-sm text-gray-500">
+            {preparedCount}/{totalCount} 已準備
+          </div>
+          <button
+            onClick={resetTodoToDefault}
+            className="text-xs px-3 py-1 bg-blue-100 text-blue-600 rounded-lg hover:bg-blue-200 transition-colors duration-200"
+            title="重置為預設建議清單"
+          >
+            使用建議清單
+          </button>
         </div>
       </div>
 
@@ -89,7 +98,8 @@ const TodoList = () => {
           <div className="text-center py-8 text-gray-500">
             <div className="text-4xl mb-2">🎒</div>
             <p>還沒有任何準備物品</p>
-            <p className="text-sm">開始添加您的行李清單吧！</p>
+            <p className="text-sm mb-3">點擊上方「使用建議清單」載入預設項目</p>
+            <p className="text-sm">或手動添加您的行李清單！</p>
           </div>
         ) : (
           todoItems.map((item) => (
@@ -185,23 +195,7 @@ const TodoList = () => {
         </div>
       </div>
 
-      {/* 預設建議項目 */}
-      {todoItems.length === 0 && (
-        <div className="mt-6 p-4 bg-blue-50 rounded-lg border border-blue-200">
-          <h4 className="font-medium text-blue-800 mb-2">💡 建議準備物品</h4>
-          <div className="grid grid-cols-2 gap-2 text-sm text-blue-700">
-            <div>• 護照、簽證</div>
-            <div>• 機票確認單</div>
-            <div>• 旅行保險文件</div>
-            <div>• 充電器、轉接頭</div>
-            <div>• 常用藥品</div>
-            <div>• 日圓現金</div>
-            <div>• 換洗衣物</div>
-            <div>• 相機、記憶卡</div>
-          </div>
-          <p className="text-xs text-blue-600 mt-2">點擊上方輸入框開始添加您的清單！</p>
-        </div>
-      )}
+
     </div>
   );
 };
